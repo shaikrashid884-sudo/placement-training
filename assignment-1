@@ -1,0 +1,89 @@
+1. Input a year and find whether it is a leap year or not
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int year = sc.nextInt();
+
+        if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)) {
+            System.out.println("Leap Year");
+        } else {
+            System.out.println("Not a Leap Year");
+        }
+
+        sc.close();
+    }
+}
+
+
+2. Take two numbers and print the sum of both.
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        System.out.println("Sum = " + (a + b));
+
+        sc.close();
+    }
+}
+
+3. Take a number as input and print the multiplication table for it.
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(n + " x " + i + " = " + (n * i));
+        }
+
+        sc.close();
+    }
+}
+
+4. Take 2 numbers as inputs and find their HCF and LCM.
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        int x = a;
+        int y = b;
+
+        while (y != 0) {
+            int temp = y;
+            y = x % y;
+            x = temp;
+        }
+
+        int hcf = x;
+        int lcm = (a * b) / hcf;
+
+        System.out.println("HCF = " + hcf);
+        System.out.println("LCM = " + lcm);
+
+        sc.close();
+    }
+}
+
+
+
+
+
+
+
+
