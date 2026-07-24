@@ -1,0 +1,328 @@
+1. Build Array from Permutation
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        int[] ans = new int[n];
+
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        for (int i = 0; i < n; i++)
+            ans[i] = nums[nums[i]];
+
+        System.out.println(Arrays.toString(ans));
+    }
+}
+
+
+2. Concatenation of Array
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        int[] ans = new int[2 * n];
+
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            ans[i] = nums[i];
+            ans[i + n] = nums[i];
+        }
+
+        System.out.println(Arrays.toString(ans));
+    }
+}
+
+
+3. Running Sum of 1D Array
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        for (int i = 1; i < n; i++)
+            nums[i] += nums[i - 1];
+
+        System.out.println(Arrays.toString(nums));
+    }
+}
+
+
+4. Richest Customer Wealth
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+
+        int max = 0;
+
+        for (int i = 0; i < m; i++) {
+            int sum = 0;
+            for (int j = 0; j < n; j++)
+                sum += sc.nextInt();
+
+            max = Math.max(max, sum);
+        }
+
+        System.out.println(max);
+    }
+}
+
+
+5. Shuffle the Array
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] nums = new int[2 * n];
+
+        for (int i = 0; i < 2 * n; i++)
+            nums[i] = sc.nextInt();
+
+        int[] ans = new int[2 * n];
+
+        int k = 0;
+
+        for (int i = 0; i < n; i++) {
+            ans[k++] = nums[i];
+            ans[k++] = nums[i + n];
+        }
+
+        System.out.println(Arrays.toString(ans));
+    }
+}
+
+
+6. Kids With the Greatest Number of Candies
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] candies = new int[n];
+
+        int max = 0;
+
+        for (int i = 0; i < n; i++) {
+            candies[i] = sc.nextInt();
+            max = Math.max(max, candies[i]);
+        }
+
+        int extra = sc.nextInt();
+
+        for (int i = 0; i < n; i++)
+            System.out.print((candies[i] + extra >= max) + " ");
+    }
+}
+
+
+7. Number of Good Pairs
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        int count = 0;
+
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+                if (nums[i] == nums[j])
+                    count++;
+
+        System.out.println(count);
+    }
+}
+
+
+8. How Many Numbers Are Smaller Than the Current Number
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        int[] ans = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = 0; j < n; j++)
+                if (nums[j] < nums[i])
+                    count++;
+
+            ans[i] = count;
+        }
+
+        System.out.println(Arrays.toString(ans));
+    }
+}
+
+
+9. Create Target Array in the Given Order
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[] nums = new int[n];
+        int[] index = new int[n];
+
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        for (int i = 0; i < n; i++)
+            index[i] = sc.nextInt();
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < n; i++)
+            list.add(index[i], nums[i]);
+
+        System.out.println(list);
+    }
+}
+
+
+10. Check if the Sentence Is Pangram
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String s = sc.nextLine().toLowerCase();
+
+        boolean[] seen = new boolean[26];
+
+        for (char c : s.toCharArray()) {
+            if (c >= 'a' && c <= 'z')
+                seen[c - 'a'] = true;
+        }
+
+        for (boolean b : seen) {
+            if (!b) {
+                System.out.println(false);
+                return;
+            }
+        }
+
+        System.out.println(true);
+    }
+}
+
+
+11. Count Items Matching a Rule
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        ArrayList<String[]> items = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            items.add(sc.nextLine().split(" "));
+        }
+
+        String ruleKey = sc.next();
+        String ruleValue = sc.next();
+
+        int idx = 0;
+
+        if (ruleKey.equals("color"))
+            idx = 1;
+        else if (ruleKey.equals("name"))
+            idx = 2;
+
+        int count = 0;
+
+        for (String[] item : items)
+            if (item[idx].equals(ruleValue))
+                count++;
+
+        System.out.println(count);
+    }
+}
+
+
+12. Find the Highest Altitude
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int altitude = 0;
+        int max = 0;
+
+        for (int i = 0; i < n; i++) {
+            altitude += sc.nextInt();
+            max = Math.max(max, altitude);
+        }
+
+        System.out.println(max);
+    }
+}
