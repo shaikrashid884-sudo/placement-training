@@ -1,3 +1,5 @@
+                                    Easy
+
 1. Build Array from Permutation
 
 import java.util.*;
@@ -326,3 +328,292 @@ public class Main {
         System.out.println(max);
     }
 }
+                                           Medium
+
+1. Spiral Matrix
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int rows = sc.nextInt();
+        int cols = sc.nextInt();
+
+        int[][] matrix = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                matrix[i][j] = sc.nextInt();
+
+        List<Integer> ans = new ArrayList<>();
+
+        int top = 0, bottom = rows - 1;
+        int left = 0, right = cols - 1;
+
+        while (top <= bottom && left <= right) {
+
+            for (int i = left; i <= right; i++)
+                ans.add(matrix[top][i]);
+            top++;
+
+            for (int i = top; i <= bottom; i++)
+                ans.add(matrix[i][right]);
+            right--;
+
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--)
+                    ans.add(matrix[bottom][i]);
+                bottom--;
+            }
+
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--)
+                    ans.add(matrix[i][left]);
+                left++;
+            }
+        }
+
+        System.out.println(ans);
+    }
+}
+
+
+2. Spiral Matrix II
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        int[][] matrix = new int[n][n];
+
+        int top = 0, bottom = n - 1;
+        int left = 0, right = n - 1;
+        int num = 1;
+
+        while (top <= bottom && left <= right) {
+
+            for (int i = left; i <= right; i++)
+                matrix[top][i] = num++;
+            top++;
+
+            for (int i = top; i <= bottom; i++)
+                matrix[i][right] = num++;
+            right--;
+
+            for (int i = right; i >= left; i--)
+                matrix[bottom][i] = num++;
+            bottom--;
+
+            for (int i = bottom; i >= top; i--)
+                matrix[i][left] = num++;
+            left++;
+        }
+
+        for (int[] row : matrix)
+            System.out.println(Arrays.toString(row));
+    }
+}
+
+
+3. Spiral Matrix III
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int rows = sc.nextInt();
+        int cols = sc.nextInt();
+        int rStart = sc.nextInt();
+        int cStart = sc.nextInt();
+
+        List<int[]> ans = new ArrayList<>();
+
+        int[][] dir = {{0,1},{1,0},{0,-1},{-1,0}};
+
+        int len = 1;
+        int d = 0;
+
+        ans.add(new int[]{rStart,cStart});
+
+        while(ans.size() < rows * cols){
+
+            for(int i = 0; i < 2; i++){
+
+                for(int j = 0; j < len; j++){
+
+                    rStart += dir[d][0];
+                    cStart += dir[d][1];
+
+                    if(rStart >= 0 && rStart < rows && cStart >= 0 && cStart < cols)
+                        ans.add(new int[]{rStart,cStart});
+                }
+
+                d = (d + 1) % 4;
+            }
+
+            len++;
+        }
+
+        for(int[] p : ans)
+            System.out.println(Arrays.toString(p));
+    }
+}
+
+
+4. Set Matrix Zeroes
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+
+        int[][] matrix = new int[m][n];
+
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++)
+                matrix[i][j] = sc.nextInt();
+
+        boolean[] row = new boolean[m];
+        boolean[] col = new boolean[n];
+
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++)
+                if(matrix[i][j] == 0){
+                    row[i] = true;
+                    col[j] = true;
+                }
+
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++)
+                if(row[i] || col[j])
+                    matrix[i][j] = 0;
+
+        for(int[] r : matrix)
+            System.out.println(Arrays.toString(r));
+    }
+}
+
+
+5. Product of Array Except Self
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[] nums = new int[n];
+        int[] ans = new int[n];
+
+        for(int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        int prefix = 1;
+
+        for(int i = 0; i < n; i++){
+            ans[i] = prefix;
+            prefix *= nums[i];
+        }
+
+        int suffix = 1;
+
+        for(int i = n - 1; i >= 0; i--){
+            ans[i] *= suffix;
+            suffix *= nums[i];
+        }
+
+        System.out.println(Arrays.toString(ans));
+    }
+}
+
+                                         Hard
+
+1. Max Value of Equation
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+
+        int[][] points = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            points[i][0] = sc.nextInt(); // x
+            points[i][1] = sc.nextInt(); // y
+        }
+
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+
+                if (Math.abs(points[i][0] - points[j][0]) <= k) {
+                    int value = points[i][1] + points[j][1]
+                            + Math.abs(points[i][0] - points[j][0]);
+
+                    max = Math.max(max, value);
+                }
+            }
+        }
+
+        System.out.println(max);
+    }
+}
+
+
+2. First Missing Positive
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[] nums = new int[n];
+
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int num : nums)
+            if (num > 0)
+                set.add(num);
+
+        int ans = 1;
+
+        while (set.contains(ans))
+            ans++;
+
+        System.out.println(ans);
+    }
+}
+
+
