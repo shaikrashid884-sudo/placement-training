@@ -1,0 +1,482 @@
+Pattern 1
+
+*****
+*****
+*****
+*****
+*****
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 2
+
+*
+**
+***
+****
+*****
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 3
+
+*****
+****
+***
+**
+*
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = n; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 4
+
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 5
+
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 6
+
+    *
+   **
+  ***
+ ****
+*****
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= i; j++)
+                System.out.print("*");
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 7
+
+*****
+ ****
+  ***
+   **
+    *
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = n; i >= 1; i--) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= i; j++)
+                System.out.print("*");
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 8
+
+    *
+   ***
+  *****
+ *******
+*********
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= 2 * i - 1; j++)
+                System.out.print("*");
+ System.out.println();
+        }
+    }
+}
+
+Pattern 9 (Inverted Pyramid)
+
+Output
+
+*********
+ *******
+  *****
+   ***
+    *
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = n; i >= 1; i--) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= 2 * i - 1; j++)
+                System.out.print("*");
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 10 (Half Pyramid with Spaces)
+
+Output
+
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= i; j++)
+                System.out.print("* ");
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 11 (Inverted Half Pyramid with Spaces)
+
+Output
+
+* * * * *
+ * * * *
+  * * *
+   * *
+    *
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 5;
+
+        for (int i = n; i >= 1; i--) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= i; j++)
+                System.out.print("* ");
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 12 (Diamond of Stars)
+
+Output
+
+* * * * *
+ * * * *
+  * * *
+   * *
+    *
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+
+public class Solution {
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        // Upper Part
+        for (int i = n; i >= 1; i--) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= i; j++)
+                System.out.print("* ");
+
+            System.out.println();
+        }
+
+        // Lower Part
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= i; j++)
+                System.out.print("* ");
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 13 (Hollow Pyramid)
+
+Output
+
+    *
+   * *
+  *   *
+ *     *
+*********
+
+public class Solution {
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= 2 * i - 1; j++) {
+
+                if (j == 1 || j == 2 * i - 1 || i == n)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 14 (Inverted Hollow Pyramid)
+
+Output
+
+*********
+ *     *
+  *   *
+   * *
+    *
+
+public class Solution {
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        for (int i = n; i >= 1; i--) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= 2 * i - 1; j++) {
+
+                if (i == n || i == 1 || j == 1 || j == 2 * i - 1)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 15 (Hollow Diamond)
+
+Output
+
+    *
+   * *
+  *   *
+ *     *
+*       *
+ *     *
+  *   *
+   * *
+    *
+
+public class Solution {
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        // Upper Half
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= 2 * i - 1; j++) {
+
+                if (j == 1 || j == 2 * i - 1)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+
+            System.out.println();
+        }
+
+        // Lower Half
+        for (int i = n - 1; i >= 1; i--) {
+
+            for (int j = 1; j <= n - i; j++)
+                System.out.print(" ");
+
+            for (int j = 1; j <= 2 * i - 1; j++) {
+
+                if (j == 1 || j == 2 * i - 1)
+                    System.out.print("*");
+                else
+                    System.out.print(" ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+
+Pattern 16 (Pascal's Triangle)
+
+Output
+
+        1
+      1   1
+    1   2   1
+  1   3   3   1
+1   4   6   4   1
+
+public class Solution {
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 0; j < n - i; j++)
+                System.out.print("  ");
+
+            int num = 1;
+
+            for (int j = 0; j <= i; j++) {
+
+                System.out.print(num + "   ");
+                num = num * (i - j) / (j + 1);
+            }
+
+            System.out.println();
+        }
+    }
+}
