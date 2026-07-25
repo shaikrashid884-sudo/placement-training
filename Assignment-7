@@ -1,0 +1,582 @@
+Easy
+
+1. Merge Sorted Array
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+
+        int i = m - 1, j = n - 1, k = m + n - 1;
+
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j])
+                nums1[k--] = nums1[i--];
+            else
+                nums1[k--] = nums2[j--];
+        }
+
+        while (j >= 0)
+            nums1[k--] = nums2[j--];
+    }
+}
+
+2. Majority Element
+
+class Solution {
+    public int majorityElement(int[] nums) {
+
+        int count = 0;
+        int candidate = 0;
+
+        for (int num : nums) {
+            if (count == 0)
+                candidate = num;
+
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
+
+3. Contains Duplicate
+
+import java.util.*;
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int num : nums) {
+            if (!set.add(num))
+                return true;
+        }
+
+        return false;
+    }
+}
+
+4. Missing Number
+
+class Solution {
+    public int missingNumber(int[] nums) {
+
+        int xor = nums.length;
+
+        for (int i = 0; i < nums.length; i++)
+            xor ^= i ^ nums[i];
+
+        return xor;
+    }
+}
+
+5. Intersection of Two Arrays
+
+import java.util.*;
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> result = new HashSet<>();
+
+        for (int n : nums1)
+            set1.add(n);
+
+        for (int n : nums2)
+            if (set1.contains(n))
+                result.add(n);
+
+        int[] ans = new int[result.size()];
+        int i = 0;
+
+        for (int n : result)
+            ans[i++] = n;
+
+        return ans;
+    }
+}
+
+6. Intersection of Two Arrays II
+
+import java.util.*;
+
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int n : nums1)
+            map.put(n, map.getOrDefault(n, 0) + 1);
+
+        for (int n : nums2) {
+            if (map.getOrDefault(n, 0) > 0) {
+                list.add(n);
+                map.put(n, map.get(n) - 1);
+            }
+        }
+
+        int[] ans = new int[list.size()];
+
+        for (int i = 0; i < list.size(); i++)
+            ans[i] = list.get(i);
+
+        return ans;
+    }
+}
+
+7. Third Maximum Number
+
+class Solution {
+    public int thirdMax(int[] nums) {
+
+        Long first = null, second = null, third = null;
+
+        for (int num : nums) {
+
+            if ((first != null && num == first) ||
+                (second != null && num == second) ||
+                (third != null && num == third))
+                continue;
+
+            if (first == null || num > first) {
+                third = second;
+                second = first;
+                first = (long) num;
+            } else if (second == null || num > second) {
+                third = second;
+                second = (long) num;
+            } else if (third == null || num > third) {
+                third = (long) num;
+            }
+        }
+
+        return third == null ? first.intValue() : third.intValue();
+    }
+}
+
+8. Assign Cookies
+
+import java.util.*;
+
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int i = 0, j = 0;
+
+        while (i < g.length && j < s.length) {
+
+            if (s[j] >= g[i])
+                i++;
+
+            j++;
+        }
+
+        return i;
+    }
+}
+
+9. Array Partition I
+
+import java.util.*;
+
+class Solution {
+    public int arrayPairSum(int[] nums) {
+
+        Arrays.sort(nums);
+
+        int sum = 0;
+
+        for (int i = 0; i < nums.length; i += 2)
+            sum += nums[i];
+
+        return sum;
+    }
+}
+
+10. Maximum Product of Three Numbers
+
+import java.util.*;
+
+class Solution {
+    public int maximumProduct(int[] nums) {
+
+        Arrays.sort(nums);
+
+        int n = nums.length;
+
+        return Math.max(nums[n - 1] * nums[n - 2] * nums[n - 3],
+                        nums[0] * nums[1] * nums[n - 1]);
+    }
+}
+
+11. Sort Array By Parity
+
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+
+        int left = 0, right = nums.length - 1;
+
+        while (left < right) {
+
+            if (nums[left] % 2 > nums[right] % 2) {
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+            }
+
+            if (nums[left] % 2 == 0)
+                left++;
+
+            if (nums[right] % 2 == 1)
+                right--;
+        }
+
+        return nums;
+    }
+}
+
+12. Sort Array By Parity II
+
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+
+        int even = 0, odd = 1;
+
+        while (even < nums.length && odd < nums.length) {
+
+            while (even < nums.length && nums[even] % 2 == 0)
+                even += 2;
+
+            while (odd < nums.length && nums[odd] % 2 == 1)
+                odd += 2;
+
+            if (even < nums.length && odd < nums.length) {
+                int temp = nums[even];
+                nums[even] = nums[odd];
+                nums[odd] = temp;
+            }
+        }
+
+        return nums;
+    }
+}
+
+13. Largest Perimeter Triangle
+
+import java.util.*;
+
+class Solution {
+    public int largestPerimeter(int[] nums) {
+
+        Arrays.sort(nums);
+
+        for (int i = nums.length - 1; i >= 2; i--) {
+
+            if (nums[i - 2] + nums[i - 1] > nums[i])
+                return nums[i - 2] + nums[i - 1] + nums[i];
+        }
+
+        return 0;
+    }
+}
+
+14. Squares of a Sorted Array
+
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+
+        int n = nums.length;
+        int[] ans = new int[n];
+
+        int left = 0, right = n - 1;
+
+        for (int i = n - 1; i >= 0; i--) {
+
+            if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+                ans[i] = nums[left] * nums[left];
+                left++;
+            } else {
+                ans[i] = nums[right] * nums[right];
+                right--;
+            }
+        }
+
+        return ans;
+    }
+}
+
+15. Matrix Cells in Distance Order
+
+import java.util.*;
+
+class Solution {
+    public int[][] allCellsDistOrder(int rows, int cols, int rCenter, int cCenter) {
+
+        int[][] ans = new int[rows * cols][2];
+        int k = 0;
+
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++) {
+                ans[k][0] = i;
+                ans[k][1] = j;
+                k++;
+            }
+
+        Arrays.sort(ans, (a, b) ->
+            (Math.abs(a[0] - rCenter) + Math.abs(a[1] - cCenter)) -
+            (Math.abs(b[0] - rCenter) + Math.abs(b[1] - cCenter)));
+
+        return ans;
+    }
+}
+
+
+                                                                              Medium
+
+1. 3Sum
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+
+        for (int i = 0; i < nums.length - 2; i++) {
+
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (sum == 0) {
+                    ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
+
+                    while (left < right && nums[left] == nums[left + 1])
+                        left++;
+
+                    while (left < right && nums[right] == nums[right - 1])
+                        right--;
+
+                    left++;
+                    right--;
+
+                } else if (sum < 0)
+                    left++;
+                else
+                    right--;
+            }
+        }
+
+        return ans;
+    }
+}
+
+2. 3Sum Closest
+
+import java.util.*;
+
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+
+        Arrays.sort(nums);
+        int closest = nums[0] + nums[1] + nums[2];
+
+        for (int i = 0; i < nums.length - 2; i++) {
+
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (Math.abs(sum - target) < Math.abs(closest - target))
+                    closest = sum;
+
+                if (sum < target)
+                    left++;
+                else if (sum > target)
+                    right--;
+                else
+                    return sum;
+            }
+        }
+
+        return closest;
+    }
+}
+
+3. 4Sum
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+
+        int n = nums.length;
+
+        for (int i = 0; i < n - 3; i++) {
+
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+
+            for (int j = i + 1; j < n - 2; j++) {
+
+                if (j > i + 1 && nums[j] == nums[j - 1])
+                    continue;
+
+                int left = j + 1;
+                int right = n - 1;
+
+                while (left < right) {
+
+                    long sum = (long) nums[i] + nums[j] + nums[left] + nums[right];
+
+                    if (sum == target) {
+
+                        ans.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+
+                        while (left < right && nums[left] == nums[left + 1])
+                            left++;
+
+                        while (left < right && nums[right] == nums[right - 1])
+                            right--;
+
+                        left++;
+                        right--;
+
+                    } else if (sum < target)
+                        left++;
+                    else
+                        right--;
+                }
+            }
+        }
+
+        return ans;
+    }
+}
+
+4. Group Anagrams
+
+import java.util.*;
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        Map<String, List<String>> map = new HashMap<>();
+
+        for (String s : strs) {
+
+            char[] ch = s.toCharArray();
+            Arrays.sort(ch);
+
+            String key = new String(ch);
+
+            map.putIfAbsent(key, new ArrayList<>());
+            map.get(key).add(s);
+        }
+
+        return new ArrayList<>(map.values());
+    }
+}
+
+5. Merge Intervals
+
+import java.util.*;
+
+class Solution {
+    public int[][] merge(int[][] intervals) {
+
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+
+        List<int[]> list = new ArrayList<>();
+
+        for (int[] interval : intervals) {
+
+            if (list.isEmpty() || list.get(list.size() - 1)[1] < interval[0]) {
+                list.add(interval);
+            } else {
+                list.get(list.size() - 1)[1] =
+                        Math.max(list.get(list.size() - 1)[1], interval[1]);
+            }
+        }
+
+        return list.toArray(new int[list.size()][]);
+    }
+}
+
+6. Sort Colors
+
+class Solution {
+    public void sortColors(int[] nums) {
+
+        int low = 0;
+        int mid = 0;
+        int high = nums.length - 1;
+
+        while (mid <= high) {
+
+            if (nums[mid] == 0) {
+                int temp = nums[low];
+                nums[low] = nums[mid];
+                nums[mid] = temp;
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                int temp = nums[mid];
+                nums[mid] = nums[high];
+                nums[high] = temp;
+                high--;
+            }
+        }
+    }
+}
+
+
+                                                                 Hard
+
+1.First Missing Positive
+
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+
+            while (nums[i] > 0 &&
+                   nums[i] <= n &&
+                   nums[nums[i] - 1] != nums[i]) {
+
+                int temp = nums[i];
+                nums[i] = nums[temp - 1];
+                nums[temp - 1] = temp;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i + 1)
+                return i + 1;
+        }
+
+        return n + 1;
+    }
+}
